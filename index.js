@@ -21,8 +21,7 @@ const server=http.createServer((req,res)=>{
             const objdata=JSON.parse(chunk)
             const arrData=[objdata]
             const realTimeData=arrData.map((val)=> replaceVal(homeFile,val)).join("");
-            // console.log(realTimeData)
-            fs.writeFileSync("home.html", realTimeData);
+            res.write(realTimeData)
         })
          .on('end',(err) => {
           if (err) return console.log('connection closed due to errors', err);
